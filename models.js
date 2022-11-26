@@ -156,6 +156,8 @@ class Pokemon {
 
       currentPokemon.addEmote("cool");
       currentPokemon.checkStats();
+    } else {
+      currentPokemon.addEmote("no-thanks");
     }
   }
 
