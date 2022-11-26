@@ -88,10 +88,10 @@ class Pokemon {
             <img src="./assets/poop.gif"/>
           </div>
           <div class="action-btns py-4">
-            <button class="btn btn-outline-light feed">Feed</button>
-            <button class="btn btn-outline-light play">Play</button>
-            <button class="btn btn-outline-light exercise">Exercise</button>
-            <button class="btn btn-outline-light flush">Flush</button>
+            <button class="btn feed"> <img src="./assets/action-icons/feed.png" class="img-fluid" /> </button>
+            <button class="btn play"> <img src="./assets/action-icons/play.png" class="img-fluid" /> </button>
+            <button class="btn exercise"> <img src="./assets/action-icons/exercise.png" class="img-fluid" /> </button>
+            <button class="btn flush"> <img src="./assets/action-icons/flush.png" class="img-fluid" /> </button>
           </div>
         </div>
           <div class="stats mt-3 row">

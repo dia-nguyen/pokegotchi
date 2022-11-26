@@ -126,15 +126,39 @@ body {
 
 .action-btns .btn {
   width: auto;
-  border: 1px solid;
-  border-radius: 20px;
-  width: 100px;
-  margin: 0 2px;
+  margin: 0 2em;
+  outline: none;
+  border: none;
+}
+
+@media (max-width: 800px) {
+  .action-btns .btn {
+    margin: 0 2px;
+  }
+}
+
+.action-btns .btn:active,
+.action-btns .btn:disabled {
+  border: none;
+}
+
+
+.action-btns .btn img {
+  width: auto;
+  height: 30px;
+  image-rendering: pixelated;
+
+}
+
+.action-btns .btn:hover img {
+  transition: all 2ms linear;
+  transform: scale(1.2);
 }
 
 .name-banner {
   position: relative;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
