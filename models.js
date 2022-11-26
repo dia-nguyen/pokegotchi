@@ -293,7 +293,7 @@ class Pokemon {
       .addClass("btn-outline-dark")
       .removeClass("btn-outline-info");
 
-    $(".pokemon-sprite").attr("src", "assets/rip.png");
+    $(".pokemon-sprite").attr("src", "./assets/rip.png");
     $adoptPokemonBtn.text("Adopt a New Pokemon");
     $adoptPokemonBtn.show();
   }
@@ -322,7 +322,7 @@ class Pokemon {
   generateBackground() {
     let backgrounds = ["Desert", "Field", "Forest", "Hills", "Snow"];
     let randomIdx = Math.floor(Math.random() * backgrounds.length);
-    let randomBg = `${ASSET_URL}/${backgrounds[randomIdx]}.png`;
+    let randomBg = `./${ASSET_URL}/${backgrounds[randomIdx]}.png`;
     return randomBg;
   }
 
