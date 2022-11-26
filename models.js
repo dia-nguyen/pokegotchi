@@ -75,7 +75,7 @@ class Pokemon {
     $("#poke-container").append(
       `<div class="card text-center col-md-6 col offset-md-3">
         <div class="name-banner">
-          <img class="img-fluid" src="/assets/name-banner.png"/>
+          <img class="img-fluid" src="./assets/name-banner.png"/>
           <h2>${this.name}</h2>
         </div>
         <div class="card border-0 pokemon-card">
