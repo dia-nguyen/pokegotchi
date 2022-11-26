@@ -4,6 +4,10 @@
   cursor: none !important;
 }
 
+html {
+  overflow: hidden;
+}
+
 body {
   font-family: "VT323", monospace;
   height: 100vh;
@@ -12,6 +16,8 @@ body {
   background-size: cover;
   background-position: bottom;
   overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .container-fluid {
