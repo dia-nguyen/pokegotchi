@@ -55,8 +55,10 @@ function savePokemon() {
 /** Fetch saved Pokemon from Local Storage */
 function getSavedPokemon() {
   let savedPokemon = localStorage.getItem("myPokemon");
-  if (savedPokemon) {
+  if (savedPokemon != 'undefined' || savedPokemon == undefined) {
     return JSON.parse(savedPokemon);
+  } else {
+    return undefined
   }
 }
 
