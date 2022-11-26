@@ -2,6 +2,7 @@
 
 * {
   cursor: none !important;
+  touch-action: manipulation;
 }
 
 html {
