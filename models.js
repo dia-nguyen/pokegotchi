@@ -125,7 +125,7 @@ class Pokemon {
     }
 
     this.checkStats();
-    this.addEmote("heart");
+    this.addEmote("love");
   }
 
   /** Removes weight, adds hunger, adds happiness for current Pokemon */
@@ -133,15 +133,15 @@ class Pokemon {
     if (this.happiness <= 80) {
       this.happiness += play_adds_happiness;
 
-      if (this.weight + this.weightGained >= 20) {
+      if (this.weight + this.weightGained >= 21) {
         this.weight -= play_removes_weight;
       }
 
     } else {
-      this.addEmote("quiet");
+      this.addEmote("no-thanks");
     }
 
-    this.addEmote("cool");
+    this.addEmote("stars");
     this.checkStats();
   }
 
@@ -149,12 +149,12 @@ class Pokemon {
    * Pokemon must be at least 20 weight
    */
   exercise() {
-    if (this.weight + this.weightGained >= 20) {
+    if (this.weight + this.weightGained >= 21) {
       this.hunger += exercise_adds_hunger;
       this.weightGained -= exercise_removes_weight;
       this.happiness -= exercise_removes_happiness;
 
-      this.addEmote("stars");
+      this.addEmote("cool");
       this.checkStats();
     }
   }
@@ -184,6 +184,8 @@ class Pokemon {
 
       clearInterval(this.poopTimer);
       this.poop();
+    } else {
+      this.addEmote("no-thanks");
     }
   }
   /** Updates UI with stats. Text color changes based on status */
@@ -205,7 +207,7 @@ class Pokemon {
 
         if (happiness >= 50) {
           this.changeTextColor("happiness", "success");
-        } else if (happiness <= 49 && happiness >= 30) {
+        } else if (happiness < 50 && happiness >= 30) {
           this.changeTextColor("happiness", "warning");
         } else if (happiness <= 29) {
           this.changeTextColor("happiness", "danger");
@@ -237,8 +239,9 @@ class Pokemon {
 
         if (hunger >= 45 && hunger < 70) {
           this.changeTextColor("hunger", "warning");
-        } else if (hunger >= 70) {
           this.addEmote("angry");
+        } else if (hunger >= 70) {
+          this.addEmote("dying");
           this.changeTextColor("hunger", "danger");
         }
       }
@@ -309,7 +312,7 @@ class Pokemon {
 
   /** Displays emote on UI. Can pass in different styles */
   addEmote(emote) {
-    let emotes = ["stars", "quiet", "cool", "heart"];
+    let emotes = ["stars", "quiet", "cool", "heart", "tired"];
 
     if (emote === "ko") {
       $(".sprite-wrapper").addClass(emote);

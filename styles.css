@@ -223,14 +223,26 @@ body {
 .sprite-wrapper.cool:after {
   background-image: url(./assets/bubbles/cool.png);
 }
-.sprite-wrapper.stars:after {
-  background-image: url(./assets/bubbles/stars.png);
-}
 .sprite-wrapper.quiet:after {
   background-image: url(./assets/bubbles/quiet.png);
 }
 .sprite-wrapper.angry:after {
   background-image: url(./assets/bubbles/angry.png);
+}
+.sprite-wrapper.tired:after {
+  background-image: url(./assets/bubbles/tired.png);
+}
+.sprite-wrapper.dying:after {
+  background-image: url(./assets/bubbles/dying.png);
+}
+.sprite-wrapper.stars:after {
+  background-image: url(./assets/bubbles/stars.png);
+}
+.sprite-wrapper.love:after {
+  background-image: url(./assets/bubbles/love.png);
+}
+.sprite-wrapper.no-thanks:after {
+  background-image: url(./assets/bubbles/no-thanks.png);
 }
 .sprite-wrapper.ko:after {
   background-image: url(./assets/bubbles/ko.png);
