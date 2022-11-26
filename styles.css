@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+* {
+  cursor: none !important;
+}
+
+body {
+  font-family: "VT323", monospace;
+  height: 100vh;
+  display: flex;
+  background-image: url("/assets/background.png");
+  background-size: cover;
+  background-position: bottom;
+  overflow-x: hidden;
+}
+
+.container-fluid {
+  margin: auto;
+  position: relative;
+  top: -5%;
+}
+
+.logo {
+  width: 500px;
+  image-rendering: pixelated;
+  transform: translateY(-50px)
+}
+
+#poke-container h2 {
+  text-transform: capitalize;
+}
+
+#poke-container > .card {
+  box-shadow: -3px 0 0 0 #706050,
+    3px 0 0 0 #706050, 0 -3px 0 0 #706050,
+    0 3px 0 0 #706050;
+  border-radius: 0;
+  border: none;
+  max-width: 750px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+
+.pokemon-card {
+  height: 350px;
+  width: 100%;
+  border-radius: 0;
+  position: relative;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.pokemon-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(/assets/flush.png);
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  background-size: 20%;
+  opacity: 0;
+}
+
+.pokemon-card.flush:before {
+  opacity: 0.75;
+  animation: flush forwards 2s linear;
+}
+
+@keyframes flush {
+  0%{
+    transform: translateX(0)
+  }
+  100% {
+    transform: translateX(100%)
+  }
+}
+
+#btn-container {
+  position: absolute;
+  width: 100%;
+  top: 110%;
+}
+
+#btn-container .btn {
+  transform: scale(1.5);
+}
+
+
+.btn {
+  position: relative;
+  text-transform: uppercase;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: -25px;
+  z-index: 25;
+  background-size: contain;
+}
+
+.btn:hover::after {
+  background-image: url(/assets/finger.png);
+}
+
+.action-btns {
+  border: none;
+  list-style: none;
+  display: inline-block;
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(0 0 0 / 50%) 100%
+  );
+}
+
+.action-btns .btn {
+  width: auto;
+  border: 1px solid;
+  border-radius: 20px;
+  width: 100px;
+  margin: 0 2px;
+}
+
+.name-banner {
+  position: relative;
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.name-banner h2 {
+  text-transform: capitalize;
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  width: 100%;
+  margin-top: 1.75%;
+}
+
+.stats {
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+}
+
+.text-danger {
+  color: #ff3b3b !important;
+}
+
+.text-success {
+  color: #63ff63 !important
+}
+
+.stats li {
+  display: inline-block;
+}
+
+.sprite-wrapper {
+  width: 125px;
+  margin: auto;
+  position: relative;
+  z-index: 3;
+}
+
+.pokemon-sprite {
+  width: 100%;
+  image-rendering: pixelated;
+}
+
+.sprite-wrapper:after {
+  content: "";
+  position: absolute;
+  image-rendering: pixelated;
+  width: 34px;
+  height: 36px;
+  background-size: cover;
+  top: -20px;
+  left: -20px;
+  animation: float 5s ease-in-out infinite;
+}
+
+.sprite-wrapper.heart:after {
+  background-image: url(/assets/bubbles/heart.png);
+}
+.sprite-wrapper.cool:after {
+  background-image: url(/assets/bubbles/cool.png);
+}
+.sprite-wrapper.stars:after {
+  background-image: url(/assets/bubbles/stars.png);
+}
+.sprite-wrapper.quiet:after {
+  background-image: url(/assets/bubbles/quiet.png);
+}
+.sprite-wrapper.angry:after {
+  background-image: url(/assets/bubbles/angry.png);
+}
+.sprite-wrapper.ko:after {
+  background-image: url(/assets/bubbles/ko.png);
+  width: 80px;
+  top: -50px;
+  left: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.poop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.poop img {
+  width: 30px;
+  image-rendering: pixelated;
+  position: absolute;
+  display: none;
+}
+
+.poop img:nth-child(1) {
+  top: 50%;
+  left: 10%;
+}
+
+.poop img:nth-child(2) {
+  top: 20%;
+  right:30%;
+}
+
+.poop img:nth-child(3) {
+  top: 60%;
+  right:10%;
+}
