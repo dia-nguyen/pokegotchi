@@ -104,28 +104,6 @@ class Pokemon {
       </div>`
     );
 
-    $("#poke-container").on(
-      "click",
-      ".feed",
-      currentPokemon.feed.bind(currentPokemon)
-    );
-    $("#poke-container").on(
-      "click",
-      ".play",
-      currentPokemon.play.bind(currentPokemon)
-    );
-    $("#poke-container").on(
-      "click",
-      ".exercise",
-      currentPokemon.exercise.bind(currentPokemon)
-    );
-
-    $("#poke-container").on(
-      "click",
-      ".flush",
-      currentPokemon.flush.bind(currentPokemon)
-    );
-
     const bg = this.generateBackground();
 
     $(".pokemon-card").css("background-image", `url(${bg})`);
@@ -134,56 +112,59 @@ class Pokemon {
 
   /** Adds weight, removes hunger, adds happiness for current Pokemon */
   feed() {
-    currentPokemon.weightGained += feed_adds_weight;
+    this.weightGained += feed_adds_weight;
 
-    if (currentPokemon.weightGained >= 60) {
-      currentPokemon.happiness -= 10;
-    } else if (currentPokemon.happiness < 100) {
-      currentPokemon.happiness += feed_adds_happiness;
+    if (this.weightGained >= 60) {
+      this.happiness -= 10;
+    } else if (this.happiness < 100) {
+      this.happiness += feed_adds_happiness;
     }
 
-    if (currentPokemon.hunger > 6) {
-      currentPokemon.hunger -= feed_removes_hunger;
+    if (this.hunger > 6) {
+      this.hunger -= feed_removes_hunger;
     }
 
-    currentPokemon.checkStats();
-    currentPokemon.addEmote("heart");
+    this.checkStats();
+    this.addEmote("heart");
   }
 
   /** Removes weight, adds hunger, adds happiness for current Pokemon */
   play() {
-    if (currentPokemon.happiness <= 80) {
-      currentPokemon.happiness += play_adds_happiness;
-      if (currentPokemon.weight + currentPokemon.weightGained >= 20) {
-        currentPokemon.weight -= play_removes_weight;
+    if (this.happiness <= 80) {
+      this.happiness += play_adds_happiness;
+
+      if (this.weight + this.weightGained >= 20) {
+        this.weight -= play_removes_weight;
       }
+
     } else {
-      currentPokemon.addEmote("quiet");
+      this.addEmote("quiet");
     }
 
-    currentPokemon.addEmote("cool");
-    currentPokemon.checkStats();
+    this.addEmote("cool");
+    this.checkStats();
   }
 
   /** Removes weight, adds hunger, removes happiness for current Pokemon.
    * Pokemon must be at least 20 weight
    */
   exercise() {
-    if (currentPokemon.weight + currentPokemon.weightGained >= 20) {
-      currentPokemon.hunger += exercise_adds_hunger;
-      currentPokemon.weightGained -= exercise_removes_weight;
-      currentPokemon.happiness -= exercise_removes_happiness;
-      currentPokemon.checkStats();
-      currentPokemon.addEmote("stars");
+    if (this.weight + this.weightGained >= 20) {
+      this.hunger += exercise_adds_hunger;
+      this.weightGained -= exercise_removes_weight;
+      this.happiness -= exercise_removes_happiness;
+
+      this.addEmote("stars");
+      this.checkStats();
     }
   }
 
   /** 25000ms interval for adding to poop count & showing poop icon on UI */
   poop() {
     const poopTimer = setInterval(() => {
-      if (currentPokemon.poopCount < 3) {
-        $(`.poop img:nth-child(${currentPokemon.poopCount + 1})`).show();
-        currentPokemon.poopCount++;
+      if (this.poopCount < 3) {
+        $(`.poop img:nth-child(${this.poopCount + 1})`).show();
+        this.poopCount++;
       }
     }, 25000);
     this.poopTimer = poopTimer;
@@ -191,25 +172,25 @@ class Pokemon {
 
   /** Flush animation, removes poop icons on UI, resets poopTimer interval, + happiness */
   flush() {
-    if (currentPokemon.poopCount >= 1) {
+    if (this.poopCount >= 1) {
       $(".pokemon-card").addClass("flush");
       $(`.poop img`).hide();
-      currentPokemon.poopCount = 0;
-      currentPokemon.happiness += 10;
+      this.poopCount = 0;
+      this.happiness += 10;
 
       setTimeout(() => {
         $(".pokemon-card").removeClass("flush");
       }, 2001);
 
       clearInterval(this.poopTimer);
-      currentPokemon.poop();
+      this.poop();
     }
   }
   /** Updates UI with stats. Text color changes based on status */
   checkStats() {
-    let weight = currentPokemon.weightGained;
-    let happiness = currentPokemon.happiness;
-    let hunger = currentPokemon.hunger;
+    let weight = this.weightGained;
+    let happiness = this.happiness;
+    let hunger = this.hunger;
 
     $(".weight>small").empty();
     $(".hunger>small").empty();
@@ -223,11 +204,11 @@ class Pokemon {
         );
 
         if (happiness >= 50) {
-          currentPokemon.changeTextColor("happiness", "success");
+          this.changeTextColor("happiness", "success");
         } else if (happiness <= 49 && happiness >= 30) {
-          currentPokemon.changeTextColor("happiness", "warning");
+          this.changeTextColor("happiness", "warning");
         } else if (happiness <= 29) {
-          currentPokemon.changeTextColor("happiness", "danger");
+          this.changeTextColor("happiness", "danger");
         }
       }
     }
@@ -238,16 +219,16 @@ class Pokemon {
         $(".weight>small").removeClass();
 
         if (weight <= 25 && weight > -10) {
-          currentPokemon.changeTextColor("weight", "success");
+          this.changeTextColor("weight", "success");
         } else if (weight <= 40 && weight > 25) {
-          currentPokemon.changeTextColor("weight", "warning");
+          this.changeTextColor("weight", "warning");
         } else if (weight <= -10 || weight > 41) {
-          currentPokemon.changeTextColor("weight", "danger");
+          this.changeTextColor("weight", "danger");
         }
       }
     }
 
-    $(".weight>span").text(currentPokemon.weight + currentPokemon.weightGained);
+    $(".weight>span").text(this.weight + this.weightGained);
 
     for (let state in hungerStates) {
       if (hunger >= hungerStates[state]) {
@@ -255,15 +236,15 @@ class Pokemon {
         $(".hunger>span").removeClass();
 
         if (hunger >= 45 && hunger < 70) {
-          currentPokemon.changeTextColor("hunger", "warning");
+          this.changeTextColor("hunger", "warning");
         } else if (hunger >= 70) {
-          currentPokemon.addEmote("angry");
-          currentPokemon.changeTextColor("hunger", "danger");
+          this.addEmote("angry");
+          this.changeTextColor("hunger", "danger");
         }
       }
     }
 
-    currentPokemon.checkIfAlive();
+    this.checkIfAlive();
   }
 
   /** Takes in status selector and state color to return correct styles */
@@ -277,15 +258,15 @@ class Pokemon {
 
   /** Checks to see if hunger and hapiness meets conditions to show RIP  */
   checkIfAlive() {
-    if (currentPokemon.hunger >= 100 || currentPokemon.happiness <= 0) {
-      currentPokemon.showRIP();
+    if (this.hunger >= 100 || this.happiness <= 0) {
+      this.showRIP();
     }
   }
   /** Clears intervals, disables buttons, show RIP sprite, restart btn enabled */
   showRIP() {
-    currentPokemon.addEmote("ko");
-    clearInterval(currentPokemon.timerId);
-    clearInterval(currentPokemon.poopTimer);
+    this.addEmote("ko");
+    clearInterval(this.timerId);
+    clearInterval(this.poopTimer);
 
     $(".action-btns").css("cursor", "not-allowed");
     $(".action-btns .btn")
@@ -301,17 +282,17 @@ class Pokemon {
   /** 10000ms interval to descrease/increase hunger,weight,happiness stats.  */
   decreaseStatsOvertime() {
     let timer = setInterval(() => {
-      currentPokemon.hunger += 2;
-      currentPokemon.weight -= 1;
-      currentPokemon.checkStats();
-      currentPokemon.addEmote("random");
+      this.hunger += 2;
+      this.weight -= 1;
+      this.checkStats();
+      this.addEmote("random");
 
       // if poop is visible, multiply the unhappiness
-      if (currentPokemon.poopCount > 1) {
-        currentPokemon.happiness -= 1 * currentPokemon.poopCount;
-        currentPokemon.addEmote("angry");
+      if (this.poopCount > 1) {
+        this.happiness -= 1 * this.poopCount;
+        this.addEmote("angry");
       } else {
-        currentPokemon.happiness -= 1;
+        this.happiness -= 1;
       }
     }, 10000);
 
@@ -347,3 +328,20 @@ class Pokemon {
     }
   }
 }
+
+// Bind action buttons to click events
+$("#poke-container").on('click', ".feed", () => {
+  currentPokemon.feed()
+});
+
+$("#poke-container").on('click', ".exercise", () => {
+  currentPokemon.exercise()
+});
+
+$("#poke-container").on('click', ".play", () => {
+  currentPokemon.play()
+});
+
+$("#poke-container").on('click', ".flush", () => {
+  currentPokemon.flush()
+});

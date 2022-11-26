@@ -37,6 +37,8 @@ async function generatePokemon() {
 
   pokemon.createCard();
   savePokemon();
+  $(".feed").on("click", currentPokemon.feed);
+
 }
 
 /** Click handler for generating Pokemon, hude button */
