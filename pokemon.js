@@ -54,7 +54,10 @@ function savePokemon() {
 
 /** Fetch saved Pokemon from Local Storage */
 function getSavedPokemon() {
-  return JSON.parse(localStorage.getItem("myPokemon"));
+  let savedPokemon = localStorage.getItem("myPokemon");
+  if (savedPokemon) {
+    return JSON.parse(savedPokemon);
+  }
 }
 
 /** Checks to see if there is saved Pokemon in Local Storage */
