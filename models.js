@@ -107,7 +107,7 @@ class Pokemon {
     const bg = this.generateBackground();
 
     $(".pokemon-card").css("background-image", `url(${bg})`);
-    this.checkStats();
+    currentPokemon.checkStats();
   }
 
   /** Adds weight, removes hunger, adds happiness for current Pokemon */
@@ -124,8 +124,8 @@ class Pokemon {
       this.hunger -= feed_removes_hunger;
     }
 
-    this.checkStats();
-    this.addEmote("love");
+    currentPokemon.checkStats();
+    currentPokemon.addEmote("love");
   }
 
   /** Removes weight, adds hunger, adds happiness for current Pokemon */
@@ -138,11 +138,11 @@ class Pokemon {
       }
 
     } else {
-      this.addEmote("no-thanks");
+      currentPokemon.addEmote("no-thanks");
     }
 
-    this.addEmote("stars");
-    this.checkStats();
+    currentPokemon.addEmote("stars");
+    currentPokemon.checkStats();
   }
 
   /** Removes weight, adds hunger, removes happiness for current Pokemon.
@@ -154,8 +154,8 @@ class Pokemon {
       this.weightGained -= exercise_removes_weight;
       this.happiness -= exercise_removes_happiness;
 
-      this.addEmote("cool");
-      this.checkStats();
+      currentPokemon.addEmote("cool");
+      currentPokemon.checkStats();
     }
   }
 
@@ -185,7 +185,7 @@ class Pokemon {
       clearInterval(this.poopTimer);
       this.poop();
     } else {
-      this.addEmote("no-thanks");
+      currentPokemon.addEmote("no-thanks");
     }
   }
   /** Updates UI with stats. Text color changes based on status */
@@ -239,9 +239,9 @@ class Pokemon {
 
         if (hunger >= 45 && hunger < 70) {
           this.changeTextColor("hunger", "warning");
-          this.addEmote("angry");
+          currentPokemon.addEmote("angry");
         } else if (hunger >= 70) {
-          this.addEmote("dying");
+          currentPokemon.addEmote("dying");
           this.changeTextColor("hunger", "danger");
         }
       }
@@ -267,7 +267,7 @@ class Pokemon {
   }
   /** Clears intervals, disables buttons, show RIP sprite, restart btn enabled */
   showRIP() {
-    this.addEmote("ko");
+    currentPokemon.addEmote("ko");
     clearInterval(this.timerId);
     clearInterval(this.poopTimer);
 
@@ -287,13 +287,13 @@ class Pokemon {
     let timer = setInterval(() => {
       this.hunger += 2;
       this.weight -= 1;
-      this.checkStats();
-      this.addEmote("random");
+      currentPokemon.checkStats();
+      currentPokemon.addEmote("random");
 
       // if poop is visible, multiply the unhappiness
       if (this.poopCount > 1) {
         this.happiness -= 1 * this.poopCount;
-        this.addEmote("angry");
+        currentPokemon.addEmote("angry");
       } else {
         this.happiness -= 1;
       }
