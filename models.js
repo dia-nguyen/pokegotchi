@@ -83,9 +83,9 @@ class Pokemon {
             <img class="pokemon-sprite" src="${this.sprites}"/>
           </span>
           <div class="poop">
-            <img src="/assets/poop.gif"/>
-            <img src="/assets/poop.gif"/>
-            <img src="/assets/poop.gif"/>
+            <img src="./assets/poop.gif"/>
+            <img src="./assets/poop.gif"/>
+            <img src="./assets/poop.gif"/>
           </div>
           <div class="action-btns py-4">
             <button class="btn btn-outline-light feed">Feed</button>
